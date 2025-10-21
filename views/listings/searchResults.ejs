@@ -1,0 +1,20 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<div class="container mt-4">
+  <h4>Search results for "<%= query %>":</h4>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+      <% searchInp.forEach(search => { %>
+        <a href="/listings/<%= search._id %>" class="listing-card">
+          <div class="card col listing-card">
+            <img src="<%= search.image.url %>" class="card-img-top" alt="listing image" style="height: 20rem;">
+            <div class="card-body">
+              <p class="card-text">
+                <b><%= search.title %></b><br>
+                <%= search.location %><br>
+                ₹<%= search.price.toLocaleString("en-IN") %> /night
+              </p>
+            </div>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<div class="container mt-4">
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+      <% camps.forEach(camp => { %>
+        <a href="/listings/<%= camp._id %>" class="listing-card">
+          <div class="card col listing-card">
+            <img src="<%= camp.image.url %>" class="card-img-top" alt="listing image" style="height: 20rem;">
+            <div class="card-body">
+              <p class="card-text">
+                <b><%= camp.title %></b><br>
+                <%= camp.location %><br>
+                ₹<%= camp.price.toLocaleString("en-IN") %> /night
+              </p>
+            </div>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<% layout("/layouts/boilerplate.ejs") %>
+    <style>
+        .dropdown-toggle {
+            background-color: white !important;
+            color: rgb(56, 56, 56) !important;
+        }
+
+        .dropdown-toggle:hover {
+            background-color: #fe424d !important;
+            color: white !important;
+        }
+    </style>
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+            
+            <h3>Edit Listing</h3>
+            <form method="post" action="/listings/<%= infoListing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input name="listings[title]" value="<%= infoListing.title %>" type="text" class="form-control" required>
+                    <div class="valid-feedback">Title looks good!</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea name="listings[description]"
+                        class="form-control" required><%= infoListing.description %></textarea>
+                    <div class="invalid-feedback">Please enter a short description</div>
+                </div>
+
+                <div class="mb-3">
+                    <h4>Your old Image</h4><br>
+                    <img src="<%= ogImgUrl %>">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="image">Upload new Image</label>
+                    <input name="listings[image]" value="<%= infoListing.image.url %>" type="file" class="form-control">
+                    <div class="invalid-feedback">Please Upload .jpg, .png, .jpeg file</div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                    <label class="form-label" for="price">Price</label>
+                    <input name="listings[price]" value="<%= infoListing.price %>" type="number" class="form-control" required>
+                     <div class="invalid-feedback">Please enter a valid price</div>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label class="form-label" for="country">Country</label>
+                    <input name="listings[country]" value="<%= infoListing.country %>" type="text" class="form-control" required>
+                    <div class="invalid-feedback">Please enter valid country name</div>
+                </div>
+                </div>
+                
+
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input name="listings[location]" value="<%= infoListing.location %>" type="text"
+                        class="form-control" required>
+                    <div class="invalid-feedback">Please enter valid location name</div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false" id="categoryDropdown">
+                            Category
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" data-value="iconic cities">Iconic City</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="castles">Castles</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="camping">Camps</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="farms">Farms</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="mountains">Mountains</a></li>
+                            <li><a class="dropdown-item" href="#" data-value="arctic">Arctic</a></li>
+                        </ul>
+                        <input type="hidden" name="listings[category]" id="categoryInput">
+                    </div>
+                </div>
+
+                <button class="btn btn-dark edit-btn mt-3">Edit</button>
+                <br><br>
+            </form>
+
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.dropdown-item').forEach(function (item) {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('categoryDropdown').textContent = item.textContent;
+                document.getElementById('categoryInput').value = item.getAttribute('data-value');
+            });
+        });
+    </script>

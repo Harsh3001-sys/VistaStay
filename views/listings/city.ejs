@@ -1,0 +1,19 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<div class="container mt-4">
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+      <% cities.forEach(city => { %>
+        <a href="/listings/<%= city._id %>" class="listing-card">
+          <div class="card col listing-card">
+            <img src="<%= city.image.url %>" class="card-img-top" alt="listing image" style="height: 20rem;">
+            <div class="card-body">
+              <p class="card-text">
+                <b><%= city.title %></b><br>
+                <%= city.location %><br>
+                ₹<%= city.price.toLocaleString("en-IN") %> /night
+              </p>
+            </div>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+</div>
