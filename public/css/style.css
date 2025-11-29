@@ -11,7 +11,7 @@ body{
     min-height: 100vh;
 } */
 
-.container{
+.container, main{
     flex: 1;
 }
 
@@ -49,6 +49,11 @@ body{
 .f-info-socials i{
     font-size: 1.2rem;
     margin-right: 1rem;
+}
+
+.f-info-socials a{
+    color: #222222;
+    text-decoration: none;
 }
 
 .f-info{
@@ -115,3 +120,19 @@ body{
     height: 15rem !important; 
     width: 25rem !important;
 }
+
+/* Reduce left-right spacing on mobile */
+@media (max-width: 576px) {
+    .container {
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-control, .row {
+        padding-left: 3px !important;
+        padding-right: 3px !important;
+    }
+}
+

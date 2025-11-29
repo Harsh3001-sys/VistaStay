@@ -1,25 +1,14 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
 <style>
-    .filters {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        /* gap: 2rem; */
-        margin-bottom: 1rem;
+    .filter i {
+        opacity: 0.8;
+        font-size: 1.2rem;
+        transition: 0.2s;
     }
 
-    .filter {
-        opacity: 0.7;
-        text-align: center;
-        margin-right: 2rem;
-        margin-top: 1rem;
-        transition: opacity 0.2s;
-    }
-
-    .filter:hover {
+    .filter:hover i {
         opacity: 1;
-        cursor: pointer;
     }
 
     .filter a{
@@ -27,29 +16,12 @@
         color: black;
     }
 
-    .tax-info {
-        display: none;
-    }
-
     .toggle-switch {
         border: 1px solid black;
-        border-radius: 1rem;
-        height: 3rem;
+        border-radius: 2rem;
         display: flex;
         align-items: center;
-        padding: 1rem;
-        margin-left: 2rem;
-    }
-
-    /* Smooth collapse for small/medium screens */
-    #filterCollapse {
-        overflow: hidden;
-        transition: max-height 0.4s ease;
-    }
-
-    .filter-collapse-toggle{
-        margin-top: 1rem;
-        color: black !important;
+        padding: 0.6rem 1rem;
     }
 
     .filter-collapse-toggle:hover{
@@ -58,7 +30,7 @@
     }
 </style>
 
-<div class="filter-section-wrapper">
+<div class="filter-section-wrapper my-3">
     <!-- Filter toggle button for medium/small screens -->
     <button class="btn btn-outline-secondary filter-collapse-toggle d-lg-none mb-2" type="button"
         data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false"
@@ -67,54 +39,56 @@
     </button>
 
     <!-- Filters container -->
-    <div id="filterCollapse" class="collapse d-lg-flex">
-        <div class="filters">
-            <div class="filter">
+    <div id="filterCollapse" class="collapse d-lg-block">
+        <div class="row text-center g-1 w-100 mt-1">
+            <div class="col-4 col-md-3 col-lg-3 filter">
                 <a href="/listings/trending">
                 <div><i class="fa-solid fa-fire"></i></div>
                 <p>Trending</p>
                 </a>
             </div>
-            <div class="filter">
+            <div class="col-4 col-md-3 col-lg-3 filter">
                 <a href="/listings/cities">
                 <div><i class="fa-solid fa-mountain-city"></i></div>
                 <p>Iconic cities</p>
                 </a>
             </div>
-            <div class="filter">
+            <div class="col-4 col-md-3 col-lg-3 filter">
                 <a href="/listings/castle">
                 <div><i class="fa-solid fa-chess-rook"></i></div>
                 <p>Castles</p>
                 </a>
             </div>
-            <div class="filter">
+            <div class="col-4 col-md-3 col-lg-3 filter">
                 <a href="/listings/camps">
                 <div><i class="fa-solid fa-campground"></i></div>
                 <p>Camping</p>
                 </a>
             </div>
-            <div class="filter">
+            <div class="col-4 col-md-3 col-lg-3 filter">
                 <a href="/listings/farms">
                 <div><i class="fa-solid fa-tractor"></i></div>
                 <p>Farms</p>
                 </a>
             </div>
-            <div class="filter">
+            <div class="col-4 col-md-3 col-lg-3 filter">
                 <a href="/listings/mountains">
                 <div><i class="fa-solid fa-mountain"></i></div>
                 <p>Mountains</p>
                 </a>
             </div>
-            <div class="filter">
+            <div class="col-4 col-md-3 col-lg-3 filter">
                 <a href="/listings/arctic">
                 <div><i class="fa-solid fa-snowflake"></i></div>
                 <p>Arctic</p>
                 </a>
             </div>
-            <div class="toggle-switch ">
-                <div class="form-check form-switch form-check-reverse">
-                    <input class="form-check-input" type="checkbox" id="switchCheckReverse">
-                    <label class="form-check-label" for="switchCheckReverse">Display total after taxes</label>
+            <div class="col-12 d-flex justify-content-center mt-3">
+                <div class="toggle-switch ">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="switchCheckReverse">
+                        <label class="form-check-label" for="switchCheckReverse">Display total after taxes</label>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,11 +1,11 @@
 <% layout("/layouts/boilerplate.ejs") %>
-    <div class="row">
-        <div class="col-8 offset-3 mt-3">
+<div class="row mt-3 justify-content-center">
+    <div class="col-12 col-md-10 col-lg-6">
             <h3>
                 <%= infoListing.title %>
             </h3>
-        </div>
-        <div class="card col-6 offset-3 mt-3 listing-card">
+        
+        <div class="card mt-3 listing-card w-100">
             <img src="<%= infoListing.image.url %>" class="card-img-top show-img" alt="listing_image">
             <div class="card-body">
                 <p class="card-text">
@@ -21,7 +21,7 @@
         </div>
 
         <%if(currUser && infoListing.owner._id.equals(currUser._id)){ %>
-            <div class="btns col-8 offset-3">
+            <div class="btns mt-3 mb-3">
                 <form action="/listings/<%= infoListing._id %>/edit" method="get">
                     <button class="btn btn-dark edit-btn">Edit</button>
                 </form>
@@ -31,7 +31,7 @@
             </div>
             <% } %>
 
-                <div class="col-8 offset-3">
+                <!-- <div class="col-8 offset-3"> -->
                     <hr>
                     <% if(currUser){ %>
                         <h4>Leave a review</h4>
@@ -63,14 +63,14 @@
                             <button class="btn btn-outline-dark">Submit</button>
                         </form>
                         <% } %>
-                </div>
+                <!-- </div> -->
 
                 <% if(infoListing.reviews.length >0){ %>
-                <div class="col-8 offset-3 mt-3 mb-3">
+                <div class="mt-4 mb-3">
                     <p><b>All Reviews</b></p>
                     <div class="row">
                         <% for(review of infoListing.reviews){ %>
-                            <div class="card col-5 ms-3 mb-3">
+                            <div class="card col-12 col-md-6 mb-3">
                                 <div class="card-body">
                                     <div class="card-title"><b>
                                             <%= review.author.username %>
@@ -94,3 +94,4 @@
                 </div>
                 <% } %>
     </div>
+</div>

@@ -41,6 +41,12 @@ router.get("/mountains",wrapAsync(listingController.mountains));
 // arctic
 router.get("/arctic",wrapAsync(listingController.arctic));
 
+// privacy
+router.get("/privacy",wrapAsync(listingController.privacy));
+
+// terms
+router.get("/terms",wrapAsync(listingController.terms));
+
 router
 .route("/:id")
 .get(wrapAsync(listingController.showListings))

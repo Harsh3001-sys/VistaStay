@@ -7,38 +7,82 @@ module.exports.index = async (req, res) => {
 
 module.exports.trending = async(req,res)=>{
     const trendingListings = await listing.find({ category: "trending" });
-    res.render("./listings/trending.ejs", {trendingListings});
+    if (trendingListings.length === 0) {
+        req.flash("error", "No listings found in this category!");
+        res.redirect("/listings");
+    }else{
+        res.render("./listings/trending.ejs", {trendingListings});
+    }
 }
 
 module.exports.iconicCities = async(req,res)=>{
     const cities = await listing.find({ category: "iconic cities" });
-    res.render("./listings/city.ejs", {cities});
+    if (cities.length === 0) {
+        req.flash("error", "No listings found in this category!");
+        res.redirect("/listings");
+    }else{
+        res.render("./listings/city.ejs", {cities});
+    }
 }
 
 module.exports.castles = async(req,res)=>{
     const castles = await listing.find({ category: "castles" });
-    res.render("./listings/castle.ejs", {castles});
+    if (castles.length === 0) {
+        req.flash("error", "No listings found in this category!");
+        res.redirect("/listings");
+    }else{
+        res.render("./listings/castle.ejs", {castles});
+    }
 }
 
 module.exports.camps = async(req,res)=>{
     const camps = await listing.find({ category: "camping" });
-    res.render("./listings/camps.ejs", {camps});
+    if (camps.length === 0) {
+        req.flash("error", "No listings found in this category!");
+        res.redirect("/listings");
+    }else{
+        res.render("./listings/camps.ejs", {camps});
+    }
 }
 
 module.exports.farms = async(req,res)=>{
     const farms = await listing.find({ category: "farms" });
-    res.render("./listings/farms.ejs", {farms});
+    if (farms.length === 0) {
+        req.flash("error", "No listings found in this category!");
+        res.redirect("/listings");
+    }else{
+        res.render("./listings/farms.ejs", {farms});
+    }
 }
 
 module.exports.mountains = async(req,res)=>{
     const mountains = await listing.find({ category: "mountains" });
-    res.render("./listings/mountains.ejs", {mountains});
+    if (mountains.length === 0) {
+        req.flash("error", "No listings found in this category!");
+        res.redirect("/listings");
+    }else{
+        res.render("./listings/mountains.ejs", {mountains});
+    }
 }
 
 module.exports.arctic = async(req,res)=>{
     const arctics = await listing.find({ category: "arctic" });
-    res.render("./listings/arctic.ejs", {arctics});
+    if (arctics.length === 0) {
+        req.flash("error", "No listings found in this category!");
+        res.redirect("/listings");
+    }else{
+        res.render("./listings/arctic.ejs", {arctics});
+    }
 }
+
+module.exports.privacy = async(req,res)=>{
+    res.render("./listings/privacy.ejs");
+}
+
+module.exports.terms = async(req,res)=>{
+    res.render("./listings/terms.ejs");
+}
+
 
 module.exports.newForm = (req, res) => {
     res.render("./listings/new.ejs");
