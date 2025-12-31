@@ -1,37 +1,37 @@
 <% layout("/layouts/boilerplate.ejs") %>
-<div class="row mt-3 justify-content-center">
-    <div class="col-12 col-md-10 col-lg-6">
+    <div class="row mt-3 justify-content-center">
+        <div class="col-12 col-md-10 col-lg-6">
             <h3>
                 <%= infoListing.title %>
             </h3>
-        
-        <div class="card mt-3 listing-card w-100">
-            <img src="<%= infoListing.image.url %>" class="card-img-top show-img" alt="listing_image">
-            <div class="card-body">
-                <p class="card-text">
-                    Owned by: <i>
-                        <%= infoListing.owner.username %>
-                    </i><br>
-                    <%= infoListing.description %><br>
-                        &#8377; <%= infoListing.price.toLocaleString("en-IN") %><br>
-                            <%= infoListing.location %><br>
-                                <%= infoListing.country %><br>
-                </p>
-            </div>
-        </div>
 
-        <%if(currUser && infoListing.owner._id.equals(currUser._id)){ %>
-            <div class="btns mt-3 mb-3">
-                <form action="/listings/<%= infoListing._id %>/edit" method="get">
-                    <button class="btn btn-dark edit-btn">Edit</button>
-                </form>
-                <form method="post" action="/listings/<%=infoListing._id%>?_method=DELETE">
-                    <button class="btn btn-dark ">Delete</button>
-                </form>
+            <div class="card mt-3 listing-card w-100">
+                <img src="<%= infoListing.image.url %>" class="card-img-top show-img" alt="listing_image">
+                <div class="card-body">
+                    <p class="card-text">
+                        Owned by: <i>
+                            <%= infoListing.owner.username %>
+                        </i><br>
+                        <%= infoListing.description %><br>
+                            &#8377; <%= infoListing.price.toLocaleString("en-IN") %><br>
+                                <%= infoListing.location %><br>
+                                    <%= infoListing.country %><br>
+                    </p>
+                </div>
             </div>
+
+            <%if(currUser && infoListing.owner._id.equals(currUser._id)){ %>
+                <div class="btns mt-3 mb-3">
+                    <form action="/listings/<%= infoListing._id %>/edit" method="get">
+                        <button class="btn btn-dark edit-btn">Edit</button>
+                    </form>
+                    <form method="post" action="/listings/<%=infoListing._id%>?_method=DELETE">
+                        <button class="btn btn-dark ">Delete</button>
+                    </form>
+                </div>
             <% } %>
 
-                <!-- <div class="col-8 offset-3"> -->
+                    <!-- <div class="col-8 offset-3"> -->
                     <hr>
                     <% if(currUser){ %>
                         <h4>Leave a review</h4>
@@ -63,35 +63,37 @@
                             <button class="btn btn-outline-dark">Submit</button>
                         </form>
                         <% } %>
-                <!-- </div> -->
+                            <!-- </div> -->
 
-                <% if(infoListing.reviews.length >0){ %>
-                <div class="mt-4 mb-3">
-                    <p><b>All Reviews</b></p>
-                    <div class="row">
-                        <% for(review of infoListing.reviews){ %>
-                            <div class="card col-12 col-md-6 mb-3">
-                                <div class="card-body">
-                                    <div class="card-title"><b>
-                                            <%= review.author.username %>
-                                        </b></div>
-                                    <p class="starability-result card-text" data-rating="<%= review.rating%>">
-                                    </p>
-                                    <div class="card-text">
-                                        <%= review.comment%>
-                                    </div><br>
-                                    <div class="card-text">
-                                        <%= review.rating%>Star
+                            <% if(infoListing.reviews.length>0){ %>
+                                <div class="mt-4 mb-3">
+                                    <p><b>All Reviews</b></p>
+                                    <div class="row">
+                                        <% for(review of infoListing.reviews){ %>
+                                            <div class="card col-12 col-md-6 mb-3">
+                                                <div class="card-body">
+                                                    <div class="card-title"><b>
+                                                            <%= review.author.username %>
+                                                        </b></div>
+                                                    <p class="starability-result card-text"
+                                                        data-rating="<%= review.rating%>">
+                                                    </p>
+                                                    <div class="card-text">
+                                                        <%= review.comment%>
+                                                    </div><br>
+                                                    <div class="card-text">
+                                                        <%= review.rating%>Star
+                                                    </div>
+                                                </div>
+                                                <form method="post"
+                                                    action="/listings/<%= infoListing._id %>/review/<%= review._id %>?_method=DELETE">
+                                                    <button
+                                                        class="btn btn-outline-danger btn-sm mt-3 mb-3">Delete</button>
+                                                </form>
+                                            </div>
+                                            <% }%>
                                     </div>
                                 </div>
-                                <form method="post"
-                                    action="/listings/<%= infoListing._id %>/review/<%= review._id %>?_method=DELETE">
-                                    <button class="btn btn-outline-danger btn-sm mt-3 mb-3">Delete</button>
-                                </form>
-                            </div>
-                            <% }%>
-                    </div>
-                </div>
-                <% } %>
+                                <% } %>
+        </div>
     </div>
-</div>
